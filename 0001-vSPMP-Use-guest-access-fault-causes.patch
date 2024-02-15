@@ -1,0 +1,45 @@
+From cceb151ec5f7e34155a946c2ad5997a86f7dc013 Mon Sep 17 00:00:00 2001
+From: Jose Martins <josemartins90@gmail.com>
+Date: Tue, 30 Jan 2024 10:33:49 +0000
+Subject: [PATCH] vSPMP: Use guest access fault causes
+
+Signed-off-by: Jose Martins <josemartins90@gmail.com>
+---
+ riscv/mmu.cc | 21 +++++++++++++++------
+ 1 file changed, 15 insertions(+), 6 deletions(-)
+
+diff --git a/riscv/mmu.cc b/riscv/mmu.cc
+index 96cd35db..9758fafb 100644
+--- a/riscv/mmu.cc
++++ b/riscv/mmu.cc
+@@ -58,12 +58,21 @@ void throw_access_exception(bool virt, reg_t addr, access_type type)
+ 
+ void throw_spmp_access_exception(bool virt, reg_t addr, access_type type)
+ {
+-  switch (type) {
+-    case FETCH: throw trap_instruction_page_fault(virt, addr, 0, 0);
+-    case LOAD: throw trap_load_page_fault(virt, addr, 0, 0);
+-    case STORE: throw trap_store_page_fault(virt, addr, 0, 0);
+-    default: abort();
+-  }
++    if (virt) {
++        switch (type) {
++            case FETCH: throw trap_instruction_guest_page_fault(addr, addr >> 2, 0);
++            case LOAD: throw trap_load_guest_page_fault(addr, addr >> 2, 0);
++            case STORE: throw trap_store_guest_page_fault(addr, addr >> 2, 0);
++            default: abort();
++        }
++    } else {
++        switch (type) {
++            case FETCH: throw trap_instruction_page_fault(virt, addr, 0, 0);
++            case LOAD: throw trap_load_page_fault(virt, addr, 0, 0);
++            case STORE: throw trap_store_page_fault(virt, addr, 0, 0);
++            default: abort();
++        }
++    }
+ }
+ 
+ mmu_t::trans_addr_t mmu_t::translate(mem_access_info_t access_info, reg_t len)
+-- 
+2.34.1
+
