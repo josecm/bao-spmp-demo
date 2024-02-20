@@ -56,5 +56,5 @@ make -C opensbi PLATFORM=generic FW_PAYLOAD_PATH=$(realpath bao-hypervisor/bin/s
 Before you build the spike simulator with the hypevisor spmp support, make sure you apply the provided patch (*0001-vSPMP-Use-guest-access-fault-causes.patch*). Finally, run spike with the following command:
 
 ```
-/path/riscv-isa-sim/build/spike -p2 -m4096 --isa=rv64imafdch_sstc_zicntr_zihpm --pmpregions=64  opensbi/build/platform/generic/firmware/fw_payload.elf
+/path/riscv-isa-sim/build/spike -p2 -m4096 --isa=rv64imafdch_sstc_zicntr_zihpm --spmpregions=64  opensbi/build/platform/generic/firmware/fw_payload.elf
 ```
