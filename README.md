@@ -9,7 +9,11 @@ cd bao-spmp-demo
 
 For the RV64 target download the **riscv64-unknown-elf-** toolchain from [SiFive's Freedom Tools](https://github.com/sifive/freedom-tools/releases) github repository.
 
-For the RV32 target download the **riscv32-unknown-elf-** toolchain from [RISC-V GNU tooolchain](https://github.com/riscv-collab/riscv-gnu-toolchain/releases/tag/2023.12.20) github repository.
+For the RV32 target, we specifically target ISA `rv32imacf_zca_zcb_zcf` with ABI `ilp32f`. You need to build the toolchain for this target, by following [the RISC-V toolchain repo](https://github.com/riscv-collab/riscv-gnu-toolchain) using the following configuration command:
+
+```
+./configure --prefix=/opt/riscv --with-arch=rv32imacf_zca_zcb_zcf --with-abi=ilp32f
+```
 
 Install the toolchain. Then, set the **CROSS_COMPILE** environment variable with the reference toolchain prefix path:
 
@@ -66,7 +70,7 @@ Before you build the spike simulator with the hypevisor spmp support, make sure 
 
 Setup the `SPIKE_ISA_STRING` enviroment variable according to your target:
 
-- For RV32, `export SPIKE_ISA_STRING=rv32imafdch_sstc_zicntr_zihpm`
+- For RV32, `export SPIKE_ISA_STRING=rv32imafch_sstc_zca_zcb_zicntr_zihpm`
 - For RV64, `export SPIKE_ISA_STRING=rv64imafdch_sstc_zicntr_zihpm`
 
 
