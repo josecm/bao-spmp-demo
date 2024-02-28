@@ -70,8 +70,8 @@ Before you build the spike simulator with the hypevisor spmp support, make sure 
 
 Setup the `SPIKE_ISA_STRING` enviroment variable according to your target:
 
-- For RV32, `export SPIKE_ISA_STRING=rv32imafch_sstc_zca_zcb_zicntr_zihpm`
-- For RV64, `export SPIKE_ISA_STRING=rv64imafdch_sstc_zicntr_zihpm`
+- For RV32, `export SPIKE_ISA_STRING=rv32imafch_sstc_zca_zcb_zicntr`
+- For RV64, `export SPIKE_ISA_STRING=rv64imafdch_sstc_zicntr`
 
 
 ```
