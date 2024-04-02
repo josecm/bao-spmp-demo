@@ -21,7 +21,7 @@ Clone the Bao repo with the experimental spmp branch and the OpenSBI firmware:
 
 ```
 git clone https://github.com/josecm/bao-hypervisor.git --recursive --branch exp/spmp
-git clone https://github.com/riscv-software-src/opensbi.git
+git clone https://github.com/riscv-software-src/opensbi.git && git -C opensbi checkout 322b598
 ```
 
 Setup the `ARCH_SUB` enviroment variable according to your target:
