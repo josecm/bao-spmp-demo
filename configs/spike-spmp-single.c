@@ -30,7 +30,7 @@ struct config config = {
                         .va = 0x10000000,
                         .size = 0x1000,
                         .interrupt_num = 1,
-                        .interrupts = (irqid_t[]) { 10 },
+                        .interrupts = (irqid_t[]) { 1 },
                     },
                 },
 

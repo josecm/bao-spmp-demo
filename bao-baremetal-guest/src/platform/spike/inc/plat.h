@@ -7,7 +7,7 @@
 #define PLAT_TIMER_FREQ (10000000ull) //10 MHz
 
 #define PLAT_UART_ADDR (0x10000000)
-#define UART_IRQ_ID (10)
+#define UART_IRQ_ID (1)
 
 #define CPU_EXT_SSTC 1
 
