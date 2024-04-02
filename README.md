@@ -41,6 +41,7 @@ are two configs available:
 
 - **spike-spmp-single** runs a single dualcore guest
 - **spike-spmp-dual** runs two singlecore guests
+- **spike-spmp-dual-multivcpu** runs two dualcore guests (sharing the cpus)
 
 For example:
 
